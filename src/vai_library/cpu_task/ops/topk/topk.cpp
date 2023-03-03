@@ -52,7 +52,7 @@ struct TopK_OpImp : public vart::experimental::OpImpBase {
     auto channels = input_shape[num_of_dims - 1];
     auto k = output_shape[num_of_dims - 1] / 2;
     auto num_of_elements = input.tensor->get_element_num();
-    for (auto i = 0, j = 0; i < num_of_elements; i = i + channels, j = j + k) {
+    for (auto i = 0, j = 0; i < num_of_elements; i = i + channels, j = j + 2*k) {
       topk(&input.data[i], &result.data[j], channels, k);
     }
     return 0;
